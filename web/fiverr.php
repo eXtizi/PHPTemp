@@ -45,7 +45,7 @@ if($_POST){
 	<br>
 	<br>
 <form method="post">
- 	<input type="text" placeholder="username" value="" name="id"></input><br>
+ 	<input type="text" placeholder="fiverr link" value="" name="id"></input><br>
 	<input type="submit" value="SAVE"></input>
 </form>
 EOL;
@@ -53,7 +53,7 @@ EOL;
 else{
 	$pageContent .= <<<EOL
 <form method="post">
- 	<input type="text" placeholder="username" value="" name="id"></input><br>
+ 	<input type="text" placeholder="fiverr link" value="" name="id"></input><br>
 	<input type="submit" value="SAVE"></input>
 </form>
 EOL;
