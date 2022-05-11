@@ -1,24 +1,5 @@
 <?php
-/* $p = <<<SSS
-#EXTINF:9.920000,
-nzkcvod-6-091C5A880F09U-6FB5E6087E
-#EXTINF:10.000000,
-nzkcvod-6-091C5A880F3389U-6FB5E6087E
-#EXTINF:10.000000,
-nzkcvod-6-091C5A880F3399U-6FB5E6087E
-#EXTINF:10.000000,
-nzkcvod-6-091C5A880F3409U-6FB5E6087E
-#EXTINF:10.000000,
-nzkcvod-6-091C5A880F3419U-6FB5E6087E
-#EXTINF:10.000000,
-nzkcvod-6-091C5A880F3429U-6FB5E6087E
-#EXTINF:3.520000,
-nzkcvod-6-091C5A880F3549U-6FB5E6087E
-#EXT-X-ENDLIST
-SSS;
-preg_match_all('#^nzkcvod.+#m', $p, $m);
-var_dump($m);
-exit; */
+
 ini_set('display_errors', 1);
 
 function vim($vim, $ref){
@@ -58,22 +39,21 @@ $pageContentx = '';
 if($_POST){
 	
 	$id = $_POST['id'] ?? '';
-	$ref = $_POST['ref'] ?? '';
+	
 	if($id != ''){
-		$pageContent = vim($id, $ref);
+		$pageContent = fiv($id);
 	}
 	if($id != ''){
-		$pageContent = vim($id, $ref);
+		$pageContent = fiv($id);
 		echo json_encode(array('ok' => true, 'data' => $pageContent));
 		exit;
 	}
 	$pageContent .= <<<EOL
-	<a href="{$random}" target="_blank">playlist link</a>
+	
 	<br>
 	<br>
 <form method="post">
- 	<input type="text" placeholder="Vimeo ID" value="" name="id"></input><br>
-	<input type="text" placeholder="Reffer" value="" name="ref"></input><br>
+ 	<input type="text" placeholder="username" value="" name="id"></input><br>
 	<input type="submit" value="SAVE"></input>
 </form>
 EOL;
@@ -81,8 +61,7 @@ EOL;
 else{
 	$pageContent .= <<<EOL
 <form method="post">
- 	<input type="text" placeholder="Vimeo ID" value="" name="id"></input><br>
-	<input type="text" placeholder="Reffer" value="" name="ref"></input><br>
+ 	<input type="text" placeholder="username" value="" name="id"></input><br>
 	<input type="submit" value="SAVE"></input>
 </form>
 EOL;
