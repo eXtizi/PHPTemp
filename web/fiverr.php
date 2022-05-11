@@ -37,7 +37,7 @@ if($_POST){
 	}
 	if($id != ''){
 		$pageContent = fiv($id);
-		echo json_encode(array('ok' => true, 'data' => $pageContent));
+		echo $pageContent;
 		exit;
 	}
 	$pageContent .= <<<EOL
