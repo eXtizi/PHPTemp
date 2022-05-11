@@ -2,7 +2,7 @@
 
 ini_set('display_errors', 1);
 
-function fiv($user){
+function fiv($url){
 	$headers = [
 		"Cache-Control: max-age=0",
 		"Upgrade-Insecure-Requests: 1",
@@ -11,7 +11,7 @@ function fiv($user){
 		"Accept-Language: si-LK,si;q=0.9,en-US;q=0.8,en;q=0.7",
 	];
 
-	$url = "https://www.fiverr.com/".$user."/";
+	
 	$ch = curl_init();
 	curl_setopt_array($ch, [
 	CURLOPT_URL => $url,
