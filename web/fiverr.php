@@ -2,36 +2,28 @@
 
 ini_set('display_errors', 1);
 
-function vim($vim, $ref){
-	$headers = array(
-		'Host: player.vimeo.com',
-		'User-Agent: Mozilla/5.0 (Linux; U; Android 2.2; en-us; Droid Build/FRG22D) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
-		'Accept-Encoding: gzip, deflate, br',
-		'Referer: '.$ref
-	);
+function fiv($user){
+	$headers = [
+		"Cache-Control: max-age=0",
+		"Upgrade-Insecure-Requests: 1",
+		"User-Agent: Mozilla/5.0 (Linux; Android 9; vivo 1904) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.136 Mobile Safari/537.36",
+		"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
+		"Accept-Language: si-LK,si;q=0.9,en-US;q=0.8,en;q=0.7",
+	];
+
+	$url = "https://www.fiverr.com/".$user."/";
 	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, 'https://player.vimeo.com/video/'.$vim);
-	curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_ENCODING, 'gzip, deflate, br');
-	curl_setopt($ch, CURLOPT_HEADER, false);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-	//curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1:8080');
+	curl_setopt_array($ch, [
+	CURLOPT_URL => $url,
+	CURLOPT_HTTPHEADER => $headers,
+	CURLOPT_SSL_VERIFYPEER => 0,
+	CURLOPT_RETURNTRANSFER => 1,
+	CURLOPT_FOLLOWLOCATION => 1,
+	CURLOPT_ENCODING => "",
+	]);
 	$response = curl_exec($ch);
 	curl_close($ch);
-	$content = array();
-	if(preg_match('#<title>(.+)</title>#', $response, $m1)){
-		$content['name'] = $m1[1];
-	}
-	if(preg_match('#var config = ({.*}); if \(#', $response, $m2)){
-		$conf = json_decode($m2[1], true);
-		foreach($conf['request']['files']['progressive'] as $progressive){
-			$content[$progressive['quality']] = $progressive['url'];
-		}
-		$content['thumb'] = $conf['video']['thumbs']['base'];
-	}
-	return $content;
+	return $response;
 }
 
 $pageContent = '';
@@ -86,27 +78,9 @@ else{
 }
 
 
-//<?php
-//$headers = [
-//		"Cache-Control: max-age=0",
-//		"Upgrade-Insecure-Requests: 1",
-//		"User-Agent: Mozilla/5.0 (Linux; Android 9; vivo 1904) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.136 Mobile Safari/537.36",
-//		"Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
-//		"Accept-Language: si-LK,si;q=0.9,en-US;q=0.8,en;q=0.7",
-//	];
-/*$url = "https://www.fiverr.com/rashawn732/";
-$ch = curl_init();
-curl_setopt_array($ch, [
-	CURLOPT_URL => $url,
-	CURLOPT_HTTPHEADER => $headers,
-	CURLOPT_SSL_VERIFYPEER => 0,
-	CURLOPT_RETURNTRANSFER => 1,
-	CURLOPT_FOLLOWLOCATION => 1,
-	CURLOPT_ENCODING => "",
-]);
-$response = curl_exec($ch);
-curl_close($ch);
-file_put_contents('raw.html', $response);*/
+
+
+
 	
 	
 	?>
