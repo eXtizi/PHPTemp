@@ -165,7 +165,7 @@ if (strpos($result, '"rresp","')){
 echo "$captcha";
 }
 else{
-echo "❌ Error<br>  $result<br>"Api Made by Soham"";
+echo "❌ Error<br>  $result<br>"Api Made by Soham";
 };
 
 ?>
